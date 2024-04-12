@@ -60,7 +60,7 @@ public class AccountServiceImpl implements AccountService {
             throw new GlobalException(201, "不存在该用户信息");
         }
         // 若为后台登录，则查看是否有权限
-        if (loginParameter.getType().equals(SUPER_ACCOUNT_LOGIN)) {
+        if (SUPER_ACCOUNT_LOGIN.equals(loginParameter.getType())) {
             if(!account.getType().equals(AccountTypeEnum.SUPER.getValue())){
                 throw new GlobalException(201, "该用户没有后台权限");
             }

@@ -11,10 +11,12 @@
         <result column="telephone_number" property="telephone"/>
         <result column="rank" property="rank"/>
         <result column="email" property="email"/>
+        <result column="type" property="type"/>
+
     </resultMap>
     <!--根据用户名称查询用户信息-->
     <select id="getAccountByUserName" resultMap="accountMap">
-        select account.id, account.user_name, account.password, record.email, record.telephone_number, record.rank
+        select account.id, account.user_name, account.password,account.type, record.email, record.telephone_number, record.rank
         from account account
                  left join accountDetailRecord record
                            on account.id = record.account_Id
