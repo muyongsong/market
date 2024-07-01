@@ -32,4 +32,7 @@ public interface AccountService {
      * @return 用户信息
      */
     AccountModel getByUserName(String userName);
+
+
+    void  test(int i);
 }

@@ -12,11 +12,13 @@ import com.example.demo.base.service.AccountService;
 import com.example.demo.global.config.GlobalException;
 import com.example.demo.global.util.JwtTokenUtil;
 import org.springframework.beans.BeanUtils;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.StringTokenizer;
 import java.util.UUID;
 
 /**
@@ -115,6 +117,7 @@ public class AccountServiceImpl implements AccountService {
         if (StringUtils.isEmpty(userName)) {
             throw new GlobalException(201, "用户名为空");
         }
+
         // 根据用户名称插叙用户信息
         Account account = accountMapper.getAccountByUserName(userName);
         if (!ObjectUtils.isEmpty(account)) {
@@ -123,7 +126,15 @@ public class AccountServiceImpl implements AccountService {
             BeanUtils.copyProperties(account, accountModel);
             accountModel.setRank(AccountRankEnum.valueOf(accountModel.getRank()).getValue());
             return  accountModel;
+
         }
         return null;
+    }
+
+    @Override
+    @Async
+    public void test(int i) {
+
+        System.out.println("线程" + Thread.currentThread().getName() + " 执行任务：" + i);
     }
 }

@@ -46,4 +46,17 @@ public class BasicController {
         accountService.createUser(accountModel);
         return Result.ok(Boolean.TRUE);
     }
+
+
+    /**
+     * 创建用户
+     * @return
+     */
+    @PostMapping("/test")
+    public Result<Boolean> test(){
+        for (int i = 0; i <= 10; i++) {
+            accountService.test(i);
+        }
+        return Result.ok(Boolean.TRUE);
+    }
 }
